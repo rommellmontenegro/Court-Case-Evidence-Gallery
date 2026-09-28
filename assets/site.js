@@ -1,7 +1,7 @@
 (() => {
   const DATA = window.GALLERY_DATA;
   if (!DATA) return;
-  const categoryLabels = {typePain:'Type of Pain', injuryDiscovery:'Electrical Injury Discovery', upperBody:'Upper Body Pain', lowerBody:'Lower Body Pain', thorax:'Thorax Pain'};
+  const categoryLabels = {insomnia:'Insomnia', typePain:'Type of Pain', injuryDiscovery:'Electrical Injury Discovery', upperBody:'Upper Body Pain', lowerBody:'Lower Body Pain', thorax:'Thorax Pain'};
   const dateToUtc = (s) => { const [y,m,d]=s.split('-').map(Number); return Date.UTC(y,m-1,d); };
   const addDays = (s,n) => { const t=new Date(dateToUtc(s)+n*86400000); return `${t.getUTCFullYear()}-${String(t.getUTCMonth()+1).padStart(2,'0')}-${String(t.getUTCDate()).padStart(2,'0')}`; };
   const monthName = (s) => new Intl.DateTimeFormat('en-US',{month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(dateToUtc(s+'-01')));
@@ -18,7 +18,7 @@
   // INDEX VIEW
   if (document.getElementById('media-rows')) {
     const rows=document.getElementById('media-rows'), count=document.getElementById('result-count'), empty=document.getElementById('empty-state');
-    const categoryFilters=['typePain','injuryDiscovery','upperBody','lowerBody','thorax'];
+    const categoryFilters=['insomnia','typePain','injuryDiscovery','upperBody','lowerBody','thorax'];
     const selected={}; let sortKey='timestamp', sortDir=1;
     const filterBox=document.getElementById('descriptor-filters');
     for (const key of categoryFilters) {
@@ -57,7 +57,7 @@
         const summary=k=>(m.categories[k]||[]).join('; ')||'—';
         const url=linkFor(m), wstart=galleryStart(m), dur=mediaKind(m)==='Video'?duration(m.durationSeconds):'';
         const thumb=`https://drive.google.com/thumbnail?id=${encodeURIComponent(driveId(m))}&sz=w500`;
-        return `<tr><td><a class="thumb-link" href="${esc(url)}" target="_blank" rel="noopener"><img class="index-thumb" src="${thumb}" alt="Preview of ${esc(m.name)}" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="thumb-fallback" hidden>Preview unavailable</span></a></td><td>${esc(m.date)}</td><td>${esc(m.time)}</td><td><a class="file-link" href="${esc(url)}" target="_blank" rel="noopener">${esc(m.name)}</a>${dur?` <span class="duration-inline">${dur}</span>`:''}</td><td><span class="type-pill">${mediaKind(m)}</span></td><td class="descriptor-cell">${esc(summary('typePain'))}</td><td class="descriptor-cell">${esc(summary('injuryDiscovery'))}</td><td class="descriptor-cell">${esc(summary('upperBody'))}</td><td class="descriptor-cell">${esc(summary('lowerBody'))}</td><td class="descriptor-cell">${esc(summary('thorax'))}</td><td><a class="text-link" href="gallery.html?start=${encodeURIComponent(wstart)}">${esc(displayDate(wstart))}</a></td></tr>`;
+        return `<tr><td><a class="thumb-link" href="${esc(url)}" target="_blank" rel="noopener"><img class="index-thumb" src="${thumb}" alt="Preview of ${esc(m.name)}" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="thumb-fallback" hidden>Preview unavailable</span></a></td><td>${esc(m.date)}</td><td>${esc(m.time)}</td><td><a class="file-link" href="${esc(url)}" target="_blank" rel="noopener">${esc(m.name)}</a>${dur?` <span class="duration-inline">${dur}</span>`:''}</td><td><span class="type-pill">${mediaKind(m)}</span></td><td class="descriptor-cell">${esc(summary('insomnia'))}</td><td class="descriptor-cell">${esc(summary('typePain'))}</td><td class="descriptor-cell">${esc(summary('injuryDiscovery'))}</td><td class="descriptor-cell">${esc(summary('upperBody'))}</td><td class="descriptor-cell">${esc(summary('lowerBody'))}</td><td class="descriptor-cell">${esc(summary('thorax'))}</td><td><a class="text-link" href="gallery.html?start=${encodeURIComponent(wstart)}">${esc(displayDate(wstart))}</a></td></tr>`;
       }).join('');
       count.textContent=`${filtered.length.toLocaleString()} of ${DATA.media.length.toLocaleString()} media files`;
       empty.hidden=filtered.length!==0;
@@ -85,7 +85,7 @@
     document.getElementById('window-label').textContent=`${displayDate(start)} at 12:00 AM through ${displayDate(end)} at 12:00 AM (end time not included)`;
     const files=DATA.media.filter(m=>m.timestamp>=`${start}T00:00:00`&&m.timestamp<`${end}T00:00:00`);
     document.getElementById('gallery-count').textContent=`${files.length} unique ${files.length===1?'file':'files'} in this 48-hour window`;
-    const descriptorRows=[['Type of Pain','typePain',true],['Electrical Injury Discovery','injuryDiscovery',false],['Lower Body','lowerBody',false],['Thorax','thorax',false],['Upper Body','upperBody',false]];
+    const descriptorRows=[['Insomnia','insomnia',false],['Type of Pain','typePain',true],['Electrical Injury Discovery','injuryDiscovery',false],['Lower Body','lowerBody',false],['Thorax','thorax',false],['Upper Body','upperBody',false]];
     grid.innerHTML=files.map(m=>{
       const id=driveId(m), video=mediaKind(m)==='Video', url=linkFor(m), thumb=`https://drive.google.com/thumbnail?id=${encodeURIComponent(id)}&sz=w1200`;
       const frame=`<img class="media-thumb" src="${thumb}" alt="Thumbnail of ${esc(m.name)}" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><div class="thumb-fallback">Thumbnail unavailable. Use the linked file name to open the Google Drive file.</div>${video?`<button class="play-overlay" type="button" data-drive-id="${esc(id)}" data-video-title="${esc(m.name)}" aria-label="Play ${esc(m.name)}">▶</button>`:''}`;

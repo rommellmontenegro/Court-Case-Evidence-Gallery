@@ -1,6 +1,6 @@
 # Online Gallery of Electrical Abuse Documentation
 
-A free static website assembled from the `Online Gallery.xlsx` workbook. The website has no server-side component, subscription, or build step.
+A free static website assembled from the `Online Gallery.xlsx` and `Insomnia.xlsx` workbooks. The website has no server-side component, subscription, or build step.
 
 ## Open or host the site
 
@@ -10,7 +10,7 @@ A free static website assembled from the `Online Gallery.xlsx` workbook. The web
 
 ## Edit the site
 
-- Edit `media-data.js` to change media names, timestamps, Google Drive links, video lengths, and album descriptor summaries. The data is grouped by Google Drive file ID so duplicate workbook rows do not duplicate a media card.
+- Edit `media-data.js` to change media names, timestamps, Google Drive links, video lengths, and album descriptor summaries. The data is grouped by Google Drive file ID so duplicate workbook rows or media referenced by both workbooks do not duplicate a media card.
 - Edit `assets/site.css` for colors, spacing, and layout.
 - Edit `assets/site.js` for gallery, filtering, or sorting behavior.
 - Edit `index.html` and `gallery.html` for page titles and text.
@@ -21,4 +21,4 @@ Photo and video thumbnails load from Google Drive. Click a video thumbnail to st
 
 ## Workbook snapshot
 
-The data snapshot contains 2,075 unique media files from 2023-03-20 through 2024-09-22, consolidated from 8,572 workbook rows. Media dated in 2022 is excluded. Gallery navigation lists only 48-hour windows that contain at least one media file. The displayed timestamps are the workbook timestamps, and page windows use those timestamps without timezone conversion.
+The data snapshot includes unique media from both workbooks, consolidated by Google Drive file ID. Album descriptors from `Insomnia.xlsx` populate the Insomnia filter and the Insomnia column in the chronological index. Gallery navigation lists only 48-hour windows that contain at least one media file. The displayed timestamps are the workbook timestamps, and page windows use those timestamps without timezone conversion.
