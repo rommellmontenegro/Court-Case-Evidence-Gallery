@@ -46,7 +46,7 @@
         if(dates.length&&!dates.includes(m.date))return false;
         if(months.length&&!months.includes(m.date.slice(0,7)))return false;
         if(hours.length&&!hours.includes(m.time.slice(0,2)))return false;
-        for(const k of categoryFilters){if(choices[k].length&&!choices[k].some(v=>m.categories[k].includes(v)))return false;}
+        for(const k of categoryFilters){if(choices[k].length&&!choices[k].some(v=>(m.categories[k]||[]).includes(v)))return false;}
         return true;
       }).sort((a,b)=>{
         const av=sortKey==='timestamp'?a.timestamp:sortKey==='name'?a.name.toLowerCase():sortKey==='date'?a.date:sortKey==='time'?a.time:sortKey==='type'?mediaKind(a):(a.categories[sortKey]||[]).join(' · ').toLowerCase();
