@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Chronological index of linked video and photo evidence with filters by album descriptors and date.">
+  <title>Electrical Abuse Documentation at Hillegass Parker Cooperative</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="wordmark" href="index.html">ONLINE GALLERY <span>CASE 25CV123565</span></a>
+      <nav><a class="active" href="index.html">Media index</a><a href="gallery.html">48-hour gallery</a></nav>
+    </div>
+  </header>
+  <main class="page-wrap">
+    <section class="intro">
+      <p class="eyebrow">Evidence archive · Case 25CV123565</p>
+      <h1>Electrical Abuse Documentation at Hillegass Parker Cooperative</h1>
+      <p class="lede">Browse unique media chronologically. Filter by date, time, and the album descriptors associated with each file.</p>
+      <div class="intro-actions"><a class="button primary" href="gallery.html">Browse the 48-hour gallery</a><span id="archive-summary" class="muted"></span></div>
+    </section>
+
+    <section class="filter-panel" aria-labelledby="filter-title">
+      <div class="section-heading"><div><p class="eyebrow">Find evidence</p><h2 id="filter-title">Filter the index</h2></div><button id="clear-filters" class="button secondary" type="button">Clear filters</button></div>
+      <div class="basic-filters">
+        <label class="search-label">Search names and descriptors<input id="search" type="search" placeholder="Search the index"></label>
+        <label>Exact dates, multiple allowed<input id="dates" type="text" placeholder="2023-03-20, 2023-04-01" inputmode="text"></label>
+        <label>Months, multiple allowed<input id="months" type="text" placeholder="2023-03, 2023-04"></label>
+        <label>Hours, multiple allowed<input id="hours" type="text" placeholder="01, 13, 18"></label>
+      </div>
+      <p class="filter-help">Enter comma-separated dates as YYYY-MM-DD, months as YYYY-MM, and hours as 00–23. Within each descriptor group, selected values match any choice; different groups narrow the results together.</p>
+      <div class="descriptor-filters" id="descriptor-filters"></div>
+    </section>
+
+    <section class="results-section" aria-labelledby="results-title">
+      <div class="section-heading results-heading"><div><p class="eyebrow">Chronological listing</p><h2 id="results-title">Unique media files</h2></div><p id="result-count" class="result-count" aria-live="polite"></p></div>
+      <div class="table-scroll"><table id="media-table"><thead><tr>
+        <th>Preview</th><th><button data-sort="date">Date <span></span></button></th><th><button data-sort="time">Time <span></span></button></th><th><button data-sort="name">Name <span></span></button></th><th><button data-sort="type">Type <span></span></button></th><th><button data-sort="typePain">Type of Pain <span></span></button></th><th><button data-sort="injuryDiscovery">Electrical Injury Discovery <span></span></button></th><th><button data-sort="upperBody">Upper Body Pain <span></span></button></th><th><button data-sort="lowerBody">Lower Body Pain <span></span></button></th><th><button data-sort="thorax">Thorax Pain <span></span></button></th><th>Gallery page</th>
+      </tr></thead><tbody id="media-rows"></tbody></table></div>
+      <p id="empty-state" class="empty-state" hidden>No media matches these filters. Clear a filter or change your search.</p>
+    </section>
+    <footer class="site-footer"><p>Media is embedded from Google Drive when the file allows access. Select a file name to open its Google Drive page.</p><p>Page times reflect the timestamps supplied in the source workbook.</p></footer>
+  </main>
+  <script src="media-data.js"></script><script src="assets/site.js"></script>
+</body>
+</html>
